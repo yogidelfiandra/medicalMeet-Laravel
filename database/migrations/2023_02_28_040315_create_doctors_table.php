@@ -13,7 +13,7 @@ return new class extends Migration
 	{
 		Schema::create('doctors', function (Blueprint $table) {
 			$table->id();
-			$table->integer('specialist_id');
+			$table->foreignId('specialist_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
 			$table->string('name');
 			$table->string('fee');
 			$table->longText('photo')->nullable();
