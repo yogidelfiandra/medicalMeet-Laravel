@@ -2,9 +2,10 @@
 
 namespace App\Models\Operational;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Operational\Appointment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
 class Transaction extends Model
@@ -35,4 +36,14 @@ class Transaction extends Model
 		'updated_at',
 		'deleted_at',
 	];
+
+	/**
+	 * Get the appointment that owns the Transaction
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function appointment(): BelongsTo
+	{
+		return $this->belongsTo(Appointment::class, 'appointment_id', 'id');
+	}
 }

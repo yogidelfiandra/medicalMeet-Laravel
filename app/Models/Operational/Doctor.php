@@ -2,9 +2,11 @@
 
 namespace App\Models\Operational;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\MasterData\Specialist;
+use App\Models\Operational\Appointment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
 class Doctor extends Model
@@ -32,4 +34,24 @@ class Doctor extends Model
 		'updated_at',
 		'deleted_at',
 	];
+
+	/**
+	 * Get the specialist that owns the Doctor
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function specialist(): BelongsTo
+	{
+		return $this->belongsTo(Specialist::class, 'specialist_id', 'id');
+	}
+
+	/**
+	 * Get all of the appointments for the Doctor
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function appointments(): HasMany
+	{
+		return $this->hasMany(Appointment::class, 'doctor_id');
+	}
 }

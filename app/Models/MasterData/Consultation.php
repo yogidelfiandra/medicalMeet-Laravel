@@ -2,9 +2,10 @@
 
 namespace App\Models\MasterData;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Operational\Appointment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
 class Consultation extends Model
@@ -29,4 +30,14 @@ class Consultation extends Model
 		'updated_at',
 		'deleted_at',
 	];
+
+	/**
+	 * Get all of the appointments for the Consultation
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function appointments(): HasMany
+	{
+		return $this->hasMany(Appointment::class, 'appointment_id');
+	}
 }

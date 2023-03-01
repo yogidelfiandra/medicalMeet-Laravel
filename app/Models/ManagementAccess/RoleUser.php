@@ -2,9 +2,11 @@
 
 namespace App\Models\ManagementAccess;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\ManagementAccess\Role;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
 class RoleUser extends Model
@@ -30,4 +32,24 @@ class RoleUser extends Model
 		'updated_at',
 		'deleted_at',
 	];
+
+	/**
+	 * Get the user that owns the RoleUser
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function user(): BelongsTo
+	{
+		return $this->belongsTo(User::class, 'user_id', 'id');
+	}
+
+	/**
+	 * Get the role that owns the RoleUser
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function role(): BelongsTo
+	{
+		return $this->belongsTo(Role::class, 'role_id', 'id');
+	}
 }

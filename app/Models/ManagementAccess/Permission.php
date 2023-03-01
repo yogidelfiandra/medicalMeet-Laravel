@@ -2,9 +2,10 @@
 
 namespace App\Models\ManagementAccess;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\ManagementAccess\PermissionRole;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
 class Permission extends Model
@@ -29,4 +30,14 @@ class Permission extends Model
 		'updated_at',
 		'deleted_at',
 	];
+
+	/**
+	 * Get all of the permission_roles for the Permission
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function permission_roles(): HasMany
+	{
+		return $this->hasMany(PermissionRole::class, 'permission_id');
+	}
 }

@@ -2,9 +2,13 @@
 
 namespace App\Models\Operational;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\Operational\Doctor;
+use App\Models\MasterData\Consultation;
+use App\Models\Operational\Transaction;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
 class Appointment extends Model
@@ -35,4 +39,44 @@ class Appointment extends Model
 		'updated_at',
 		'deleted_at',
 	];
+
+	/**
+	 * Get the doctor that owns the Appointment
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function doctor(): BelongsTo
+	{
+		return $this->belongsTo(Doctor::class, 'doctor_id', 'id');
+	}
+
+	/**
+	 * Get the transaction associated with the Appointment
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
+	 */
+	public function transaction(): HasOne
+	{
+		return $this->hasOne(Transaction::class, 'appointment_id');
+	}
+
+	/**
+	 * Get the user that owns the Appointment
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function user(): BelongsTo
+	{
+		return $this->belongsTo(User::class, 'user_id', 'id');
+	}
+
+	/**
+	 * Get the consultation that owns the Appointment
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function consultation(): BelongsTo
+	{
+		return $this->belongsTo(Consultation::class, 'consultation_id', 'id');
+	}
 }

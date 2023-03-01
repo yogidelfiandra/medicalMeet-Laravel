@@ -2,9 +2,10 @@
 
 namespace App\Models\MasterData;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Operational\Doctor;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
 class Specialist extends Model
@@ -30,4 +31,14 @@ class Specialist extends Model
 		'updated_at',
 		'deleted_at',
 	];
+
+	/**
+	 * Get all of the doctors for the Specialist
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function doctors(): HasMany
+	{
+		return $this->hasMany(Doctor::class, 'specialist_id');
+	}
 }

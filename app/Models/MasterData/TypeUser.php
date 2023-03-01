@@ -2,9 +2,10 @@
 
 namespace App\Models\MasterData;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ManagementAccess\DetailUser;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
 class TypeUser extends Model
@@ -29,4 +30,14 @@ class TypeUser extends Model
 		'updated_at',
 		'deleted_at',
 	];
+
+	/**
+	 * Get all of the detail_users for the TypeUser
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function detail_users(): HasMany
+	{
+		return $this->hasMany(DetailUser::class, 'type_user_id');
+	}
 }

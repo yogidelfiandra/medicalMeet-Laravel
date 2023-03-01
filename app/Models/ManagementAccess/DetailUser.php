@@ -2,9 +2,11 @@
 
 namespace App\Models\ManagementAccess;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\MasterData\TypeUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
 class DetailUser extends Model
@@ -34,4 +36,24 @@ class DetailUser extends Model
 		'updated_at',
 		'deleted_at',
 	];
+
+	/**
+	 * Get the type_user that owns the DetailUser
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function type_user(): BelongsTo
+	{
+		return $this->belongsTo(TypeUser::class, 'type_user_id', 'id');
+	}
+
+	/**
+	 * Get the user that owns the DetailUser
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function user(): BelongsTo
+	{
+		return $this->belongsTo(User::class, 'user_id', 'id');
+	}
 }
