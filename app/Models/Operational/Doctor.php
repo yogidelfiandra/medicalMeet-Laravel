@@ -30,6 +30,8 @@ class Doctor extends Model
 		'name',
 		'fee',
 		'photo',
+		'license',
+		'description',
 		'created_at',
 		'updated_at',
 		'deleted_at',
