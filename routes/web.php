@@ -21,16 +21,24 @@ use App\Http\Controllers\Frontsite\PaymentController;
 Route::resource('/', LandingController::class);
 Route::resource('detail-doctor', DetailController::class);
 
-Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => [
+// Frontsite
+Route::group(['middleware' => [
 	'auth.sanctum', config('jetstream.auth_session'), 'verified'
 ]], function () {
-	// return view('dashboard');
 
 	// appointment page
 	Route::resource('appointment', AppointmentController::class);
 
 	// payment page
 	Route::resource('payment', PaymentController::class);
+});
+
+// Backsite
+Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => [
+	'auth.sanctum', config('jetstream.auth_session'), 'verified'
+]], function () {
+
+	return view('dashboard');
 });
 
 
