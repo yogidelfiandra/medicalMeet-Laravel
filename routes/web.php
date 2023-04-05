@@ -20,6 +20,8 @@ use App\Http\Controllers\Frontsite\PaymentController;
 
 Route::resource('/', LandingController::class);
 Route::resource('detail-doctor', DetailController::class);
+Route::resource('appointment', AppointmentController::class);
+
 
 // Frontsite
 Route::group(['middleware' => [
@@ -27,7 +29,6 @@ Route::group(['middleware' => [
 ]], function () {
 
 	// appointment page
-	Route::resource('appointment', AppointmentController::class);
 
 	// payment page
 	Route::resource('payment', PaymentController::class);
