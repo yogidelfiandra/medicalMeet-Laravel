@@ -10,22 +10,22 @@
 				<h5 class="font-medium text-white">Our Product</h5>
 				<ul class="font-normal text-[#808997] mt-4">
 					<li class="mt-3">
-						<a href="#">Appointment Doctor</a>
+						<a href="#" class="hover:text-white transition">Appointment Doctor</a>
 					</li>
 					<li class="mt-3">
-						<a href="#">Free Consultation</a>
+						<a href="#" class="hover:text-white transition">Free Consultation</a>
 					</li>
 					<li class="mt-3">
-						<a href="#">Medicinal Herb</a>
+						<a href="#" class="hover:text-white transition">Medicinal Herb</a>
 					</li>
 					<li class="mt-3">
-						<a href="#">Find Trusted Doctor</a>
+						<a href="#" class="hover:text-white transition">Find Trusted Doctor</a>
 					</li>
 					<li class="mt-3">
-						<a href="#">Test Covid 19</a>
+						<a href="#" class="hover:text-white transition">Test Covid 19</a>
 					</li>
 					<li class="mt-3">
-						<a href="#">Booster Vaccine</a>
+						<a href="#" class="hover:text-white transition">Booster Vaccine</a>
 					</li>
 				</ul>
 			</div>
@@ -33,16 +33,16 @@
 				<h5 class="font-medium text-white">Useful Links</h5>
 				<ul class="font-normal text-[#808997] mt-4">
 					<li class="mt-3">
-						<a href="#">Contact Us</a>
+						<a href="#" class="hover:text-white transition">Contact Us</a>
 					</li>
 					<li class="mt-3">
-						<a href="#">About Us</a>
+						<a href="#" class="hover:text-white transition">About Us</a>
 					</li>
 					<li class="mt-3">
-						<a href="#">Articles</a>
+						<a href="#" class="hover:text-white transition">Articles</a>
 					</li>
 					<li class="mt-3">
-						<a href="#">Pharmacy</a>
+						<a href="#" class="hover:text-white transition">Pharmacy</a>
 					</li>
 				</ul>
 			</div>
@@ -50,16 +50,16 @@
 				<h5 class="font-medium text-white">Tips & Tricks</h5>
 				<ul class="font-normal text-[#808997] mt-4">
 					<li class="mt-3">
-						<a href="#">TikTok</a>
+						<a href="#" class="hover:text-white transition">TikTok</a>
 					</li>
 					<li class="mt-3">
-						<a href="#">Blog</a>
+						<a href="#" class="hover:text-white transition">Blog</a>
 					</li>
 					<li class="mt-3">
-						<a href="#">Twitter</a>
+						<a href="#" class="hover:text-white transition">Twitter</a>
 					</li>
 					<li class="mt-3">
-						<a href="#">Instagram</a>
+						<a href="#" class="hover:text-white transition">Instagram</a>
 					</li>
 				</ul>
 			</div>
