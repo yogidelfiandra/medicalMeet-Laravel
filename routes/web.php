@@ -8,6 +8,7 @@ use App\Http\Controllers\Frontsite\LandingController;
 use App\Http\Controllers\Frontsite\PaymentController;
 
 use App\Http\Controllers\Backsite\DashboardController;
+use App\Http\Controllers\Frontsite\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,8 +34,15 @@ Route::group(['middleware' => [
 	Route::resource('appointment', AppointmentController::class);
 
 	// payment page
+	Route::controller(PaymentController::class)->group(function () {
+		Route::get('payment/success', 'success')->name('payment.success');
+	});
 	Route::resource('payment', PaymentController::class);
+
+
+	Route::resource('register_success', RegisterController::class);
 });
+
 
 // Backsite
 Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => [
