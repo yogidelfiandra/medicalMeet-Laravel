@@ -7,6 +7,8 @@ use App\Http\Controllers\Frontsite\DetailController;
 use App\Http\Controllers\Frontsite\LandingController;
 use App\Http\Controllers\Frontsite\PaymentController;
 
+use App\Http\Controllers\Backsite\DashboardController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,26 +22,29 @@ use App\Http\Controllers\Frontsite\PaymentController;
 
 Route::resource('/', LandingController::class);
 Route::resource('detail-doctor', DetailController::class);
-Route::resource('appointment', AppointmentController::class);
-Route::resource('payment', PaymentController::class);
 
 
 // Frontsite
 Route::group(['middleware' => [
-	'auth.sanctum', config('jetstream.auth_session'), 'verified'
+	'auth:sanctum', config('jetstream.auth_session'), 'verified'
 ]], function () {
 
 	// appointment page
+	Route::resource('appointment', AppointmentController::class);
 
 	// payment page
+	Route::resource('payment', PaymentController::class);
 });
 
 // Backsite
 Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => [
-	'auth.sanctum', config('jetstream.auth_session'), 'verified'
+	'auth:sanctum', config('jetstream.auth_session'), 'verified'
 ]], function () {
 
-	return view('dashboard');
+	Route::resource('dashboard', DashboardController::class);
+
+
+	// return view('dashboard');
 });
 
 

@@ -1594,6 +1594,11 @@ body {
     color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 
+.text-red-500 {
+    --tw-text-opacity: 1;
+    color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+
 .text-\[\#2AB49B\] {
     --tw-text-opacity: 1;
     color: rgb(42 180 155 / var(--tw-text-opacity));
