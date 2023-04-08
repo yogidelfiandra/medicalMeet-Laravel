@@ -6,9 +6,19 @@ use App\Http\Controllers\Frontsite\AppointmentController;
 use App\Http\Controllers\Frontsite\DetailController;
 use App\Http\Controllers\Frontsite\LandingController;
 use App\Http\Controllers\Frontsite\PaymentController;
-
-use App\Http\Controllers\Backsite\DashboardController;
 use App\Http\Controllers\Frontsite\RegisterController;
+
+use App\Http\Controllers\Backsite\ConfigPaymentController;
+use App\Http\Controllers\Backsite\ConsultationController;
+use App\Http\Controllers\Backsite\DashboardController;
+use App\Http\Controllers\Backsite\DoctorController;
+use App\Http\Controllers\Backsite\PermissionController;
+use App\Http\Controllers\Backsite\ReportAppointmentController;
+use App\Http\Controllers\Backsite\ReportTransactionController;
+use App\Http\Controllers\Backsite\RoleController;
+use App\Http\Controllers\Backsite\SpecialistController;
+use App\Http\Controllers\Backsite\TypeUserController;
+use App\Http\Controllers\Backsite\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +60,16 @@ Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => [
 ]], function () {
 
 	Route::resource('dashboard', DashboardController::class);
+	Route::resource('permission', PermissionController::class);
+	Route::resource('role', RoleController::class);
+	Route::resource('user', UserController::class);
+	Route::resource('type_user', TypeUserController::class);
+	Route::resource('specialist', SpecialistController::class);
+	Route::resource('config_payment', ConfigPaymentController::class);
+	Route::resource('consultation', ConsultationController::class);
+	Route::resource('doctor', DoctorController::class);
+	Route::resource('appointment', ReportAppointmentController::class);
+	Route::resource('transaction', ReportTransactionController::class);
 
 
 	// return view('dashboard');
