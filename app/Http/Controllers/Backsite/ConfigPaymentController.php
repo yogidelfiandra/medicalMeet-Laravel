@@ -68,17 +68,24 @@ class ConfigPaymentController extends Controller
 	/**
 	 * Show the form for editing the specified resource.
 	 */
-	public function edit(string $id)
+	public function edit(ConfigPayment $config_payment)
 	{
-		return abort(404);
+		return view('pages.backsite.master-data.config-payment.edit', compact('config_payment'));
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 */
-	public function update(Request $request, string $id)
+	public function update(UpdateConfigPaymmentRequest $request, ConfigPayment $config_payment)
 	{
-		return abort(404);
+		// get all request from frontsite
+		$data = $request->all();
+
+		// update to database
+		$config_payment->update($data);
+
+		alert()->success('Success Message', 'Successfully updated config payment');
+		return redirect()->route('backsite.config_payment.index');
 	}
 
 	/**
