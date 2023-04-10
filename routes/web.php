@@ -2,16 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Frontsite
 use App\Http\Controllers\Frontsite\AppointmentController;
 use App\Http\Controllers\Frontsite\DetailController;
 use App\Http\Controllers\Frontsite\LandingController;
 use App\Http\Controllers\Frontsite\PaymentController;
 use App\Http\Controllers\Frontsite\RegisterController;
 
+// Backsite
 use App\Http\Controllers\Backsite\ConfigPaymentController;
 use App\Http\Controllers\Backsite\ConsultationController;
 use App\Http\Controllers\Backsite\DashboardController;
 use App\Http\Controllers\Backsite\DoctorController;
+use App\Http\Controllers\Backsite\HospitalPatientController;
 use App\Http\Controllers\Backsite\PermissionController;
 use App\Http\Controllers\Backsite\ReportAppointmentController;
 use App\Http\Controllers\Backsite\ReportTransactionController;
@@ -68,11 +71,9 @@ Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => [
 	Route::resource('config_payment', ConfigPaymentController::class);
 	Route::resource('consultation', ConsultationController::class);
 	Route::resource('doctor', DoctorController::class);
+	Route::resource('hospital_patient', HospitalPatientController::class);
 	Route::resource('appointment', ReportAppointmentController::class);
 	Route::resource('transaction', ReportTransactionController::class);
-
-
-	// return view('dashboard');
 });
 
 

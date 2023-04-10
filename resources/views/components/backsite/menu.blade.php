@@ -108,12 +108,12 @@
 					{{-- @endcan --}}
 
 					{{-- @can('hospital_patient_access') --}}
-					{{-- <li
+					<li
 						class="{{ request()->is('backsite/hospital_patient') || request()->is('backsite/hospital_patient/*') || request()->is('backsite/*/hospital_patient') || request()->is('backsite/*/hospital_patient/*') ? 'active' : '' }} ">
 						<a class="menu-item" href="{{ route('backsite.hospital_patient.index') }}">
 							<i></i><span>Hospital Patient</span>
 						</a>
-					</li> --}}
+					</li>
 					{{-- @endcan --}}
 
 
