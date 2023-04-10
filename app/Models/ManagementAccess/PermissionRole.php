@@ -2,9 +2,12 @@
 
 namespace App\Models\ManagementAccess;
 
-use App\Models\ManagementAccess\Role;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+use App\Models\ManagementAccess\Role;
 use App\Models\ManagementAccess\Permission;
+
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 

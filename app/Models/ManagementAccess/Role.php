@@ -3,7 +3,10 @@
 namespace App\Models\ManagementAccess;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 use App\Models\ManagementAccess\RoleUser;
+
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\ManagementAccess\PermissionRole;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

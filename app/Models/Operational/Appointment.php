@@ -2,11 +2,15 @@
 
 namespace App\Models\Operational;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+
 use App\Models\User;
 use App\Models\Operational\Doctor;
 use App\Models\MasterData\Consultation;
 use App\Models\Operational\Transaction;
-use Illuminate\Database\Eloquent\Model;
+
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 

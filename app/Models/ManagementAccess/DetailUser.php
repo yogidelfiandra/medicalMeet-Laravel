@@ -2,9 +2,12 @@
 
 namespace App\Models\ManagementAccess;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 use App\Models\User;
 use App\Models\MasterData\TypeUser;
-use Illuminate\Database\Eloquent\Model;
+
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
