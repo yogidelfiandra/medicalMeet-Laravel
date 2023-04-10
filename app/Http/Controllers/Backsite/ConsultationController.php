@@ -55,40 +55,57 @@ class ConsultationController extends Controller
 	/**
 	 * Store a newly created resource in storage.
 	 */
-	public function store(Request $request)
+	public function store(StoreConsultationRequest $request)
 	{
-		return abort(404);
+		// get all request from frontsite
+		$data = $request->all();
+
+		// store to database
+		$consultation = Consultation::create($data);
+
+		alert()->success('Success Message', 'Successfully added new consultation');
+		return redirect()->route('backsite.consultation.index');
 	}
 
 	/**
 	 * Display the specified resource.
 	 */
-	public function show(string $id)
+	public function show(Consultation $consultation)
 	{
-		return abort(404);
+		return view('pages.backsite.master-data.consultation.show', compact('consultation'));
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
 	 */
-	public function edit(string $id)
+	public function edit(Consultation $consultation)
 	{
-		return abort(404);
+		return view('pages.backsite.master-data.consultation.edit', compact('consultation'));
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 */
-	public function update(Request $request, string $id)
+	public function update(UpdateConsultationRequest $request, Consultation $consultation)
 	{
-		return abort(404);
+		// get all request from frontsite
+		$data = $request->all();
+
+		// update to database
+		$consultation->update($data);
+
+		alert()->success('Success Message', 'Successfully updated consultation');
+		return redirect()->route('backsite.consultation.index');
 	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 */
-	public function destroy(string $id)
+	public function destroy(Consultation $consultation)
 	{
-		return abort(404);
+		$consultation->forceDelete();
+
+		alert()->success('Success Message', 'Successfully deleted consultation');
+		return back();
 	}
 }
