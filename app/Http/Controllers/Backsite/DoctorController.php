@@ -48,13 +48,8 @@ class DoctorController extends Controller
 
 		// for select2 = ascending a to z
 		$specialist = Specialist::orderBy('name', 'asc')->get();
-		// $user = User::whereHas('detail_user', function ($query) {
-		// 	$query->where('type_user_id', 2);
-		// })->orderBy('name', 'asc')->get();
 
-		$user = User::orderBy('name', 'asc')->get();
-
-		return view('pages.backsite.operational.doctor.index', compact('doctor', 'specialist', 'user'));
+		return view('pages.backsite.operational.doctor.index', compact('doctor', 'specialist'));
 	}
 
 	/**
@@ -68,40 +63,60 @@ class DoctorController extends Controller
 	/**
 	 * Store a newly created resource in storage.
 	 */
-	public function store(Request $request)
+	public function store(StoreDoctorRequest $request)
 	{
-		return abort(404);
+		// get all request from frontsite
+		$data = $request->all();
+
+		// store to database
+		$doctor = Doctor::create($data);
+
+		alert()->success('Success Message', 'Successfully added new doctor');
+		return redirect()->route('backsite.doctor.index');
 	}
 
 	/**
 	 * Display the specified resource.
 	 */
-	public function show(string $id)
+	public function show(Doctor $doctor)
 	{
-		return abort(404);
+		return view('pages.backsite.operational.doctor.show', compact('doctor'));
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
 	 */
-	public function edit(string $id)
+	public function edit(Doctor $doctor)
 	{
-		return abort(404);
+		// for select2 = ascending a to z
+		$specialist = Specialist::orderBy('name', 'asc')->get();
+
+		return view('pages.backsite.operational.doctor.edit', compact('doctor', 'specialist'));
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 */
-	public function update(Request $request, string $id)
+	public function update(UpdateDoctorRequest $request, Doctor $doctor)
 	{
-		return abort(404);
+		// get all request from frontsite
+		$data = $request->all();
+
+		// update to database
+		$doctor->update($data);
+
+		alert()->success('Success Message', 'Successfully updated doctor');
+		return redirect()->route('backsite.doctor.index');
 	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 */
-	public function destroy(string $id)
+	public function destroy(Doctor $doctor)
 	{
-		return abort(404);
+		$doctor->forceDelete();
+
+		alert()->success('Success Message', 'Successfully deleted doctor');
+		return back();
 	}
 }

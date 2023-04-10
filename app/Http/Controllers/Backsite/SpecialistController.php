@@ -81,7 +81,6 @@ class SpecialistController extends Controller
 	 */
 	public function edit(Specialist $specialist)
 	{
-		dd($specialist);
 
 		return view('pages.backsite.master-data.specialist.edit', compact('specialist'));
 	}
