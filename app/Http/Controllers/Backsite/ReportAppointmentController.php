@@ -39,16 +39,6 @@ class ReportAppointmentController extends Controller
 	 */
 	public function index()
 	{
-		// $type_user_condition = Auth::user()->detail_user->type_user_id;
-
-		// if ($type_user_condition == 1) {
-		// 	// for admin
-		// 	$appointment = Appointment::orderBy('created_at', 'desc')->get();
-		// } else {
-		// 	// other admin for doctor & patient ( task for everyone here )
-		// 	$appointment = Appointment::orderBy('created_at', 'desc')->get();
-		// }
-
 		$appointment = Appointment::orderBy('created_at', 'desc')->get();
 
 		return view('pages.backsite.operational.appointment.index', compact('appointment'));
