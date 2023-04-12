@@ -4,11 +4,14 @@ namespace App\Models\ManagementAccess;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+use App\Models\User;
+use App\Models\ManagementAccess\Permission;
+use App\Models\ManagementAccess\PermissionRole;
 use App\Models\ManagementAccess\RoleUser;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\ManagementAccess\PermissionRole;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
@@ -34,6 +37,26 @@ class Role extends Model
 		'updated_at',
 		'deleted_at',
 	];
+
+	/**
+	 * The user that belong to the Role
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+	public function users(): BelongsToMany
+	{
+		return $this->belongsToMany(User::class);
+	}
+
+	/**
+	 * The permission that belong to the Role
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+	public function permission(): BelongsToMany
+	{
+		return $this->belongsToMany(Permission::class);
+	}
 
 	/**
 	 * Get all of the role_users for the Role

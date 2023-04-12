@@ -18,7 +18,7 @@ class PermissionRole extends Model
 	use SoftDeletes;
 
 	// declare table
-	public $table = 'permission_roles';
+	public $table = 'permission_role';
 
 	//this field must type date yyyy-mm-dd hh:mm:ss
 	protected $dates = [

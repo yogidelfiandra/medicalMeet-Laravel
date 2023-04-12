@@ -4,12 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
 
 use App\Models\Operational\Appointment;
+use App\Models\Operational\Doctor;
+use App\Models\ManagementAccess\Role;
 use App\Models\ManagementAccess\RoleUser;
 use App\Models\ManagementAccess\DetailUser;
 
@@ -79,6 +82,16 @@ class User extends Authenticatable
 	];
 
 	/**
+	 * The role that belong to the User
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+	public function role(): BelongsToMany
+	{
+		return $this->belongsToMany(Role::class);
+	}
+
+	/**
 	 * Get all of the appointments for the User
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -106,5 +119,15 @@ class User extends Authenticatable
 	public function role_users(): HasMany
 	{
 		return $this->hasMany(RoleUser::class, 'user_id');
+	}
+
+	/**
+	 * Get the doctor associated with the User
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
+	 */
+	public function doctor(): HasOne
+	{
+		return $this->hasOne(Doctor::class, 'user_id');
 	}
 }

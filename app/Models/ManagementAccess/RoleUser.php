@@ -18,7 +18,7 @@ class RoleUser extends Model
 	use SoftDeletes;
 
 	// declare table
-	public $table = 'role_users';
+	public $table = 'role_user';
 
 	//this field must type date yyyy-mm-dd hh:mm:ss
 	protected $dates = [
