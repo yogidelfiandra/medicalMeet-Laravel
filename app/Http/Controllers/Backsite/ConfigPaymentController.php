@@ -36,6 +36,8 @@ class ConfigPaymentController extends Controller
 	 */
 	public function index()
 	{
+		abort_if(Gate::denies('config_payment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
 		$config_payment = ConfigPayment::all();
 
 		return view('pages.backsite.master-data.config-payment.index', compact('config_payment'));
@@ -70,6 +72,8 @@ class ConfigPaymentController extends Controller
 	 */
 	public function edit(ConfigPayment $config_payment)
 	{
+		abort_if(Gate::denies('config_payment_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
 		return view('pages.backsite.master-data.config-payment.edit', compact('config_payment'));
 	}
 

@@ -17,7 +17,6 @@ use App\Http\Requests\Doctor\UpdateDoctorRequest;
 // use everything here
 use Gate;
 use Auth;
-use File;
 
 // use model here
 use App\Models\User;
@@ -43,13 +42,19 @@ class DoctorController extends Controller
 	 */
 	public function index()
 	{
+		abort_if(Gate::denies('doctor_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
 		// for table grid
 		$doctor = Doctor::orderBy('created_at', 'desc')->get();
 
 		// for select2 = ascending a to z
 		$specialist = Specialist::orderBy('name', 'asc')->get();
 
-		return view('pages.backsite.operational.doctor.index', compact('doctor', 'specialist'));
+		$user = User::whereHas('detail_user', function ($query) {
+			$query->where('type_user_id', 2);
+		})->orderBy('name', 'asc')->get();
+
+		return view('pages.backsite.operational.doctor.index', compact('doctor', 'specialist', 'user'));
 	}
 
 	/**
@@ -80,6 +85,8 @@ class DoctorController extends Controller
 	 */
 	public function show(Doctor $doctor)
 	{
+		abort_if(Gate::denies('doctor_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
 		return view('pages.backsite.operational.doctor.show', compact('doctor'));
 	}
 
@@ -88,8 +95,14 @@ class DoctorController extends Controller
 	 */
 	public function edit(Doctor $doctor)
 	{
+		abort_if(Gate::denies('doctor_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
 		// for select2 = ascending a to z
 		$specialist = Specialist::orderBy('name', 'asc')->get();
+
+		$user = User::whereHas('detail_user', function ($query) {
+			$query->where('type_user_id', 2);
+		})->orderBy('name', 'asc')->get();
 
 		return view('pages.backsite.operational.doctor.edit', compact('doctor', 'specialist'));
 	}
@@ -114,6 +127,8 @@ class DoctorController extends Controller
 	 */
 	public function destroy(Doctor $doctor)
 	{
+		abort_if(Gate::denies('doctor_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
 		$doctor->forceDelete();
 
 		alert()->success('Success Message', 'Successfully deleted doctor');

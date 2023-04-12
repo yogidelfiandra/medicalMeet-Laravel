@@ -42,6 +42,8 @@ class ReportTransactionController extends Controller
 	 */
 	public function index()
 	{
+		abort_if(Gate::denies('transaction_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
 		$transaction = Transaction::orderBy('created_at', 'desc')->get();
 
 		return view('pages.backsite.operational.transaction.index', compact('transaction'));

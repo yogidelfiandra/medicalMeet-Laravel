@@ -40,6 +40,8 @@ class NurseController extends Controller
 	 */
 	public function index()
 	{
+		abort_if(Gate::denies('nurse_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
 		$nurse = User::whereHas('detail_user', function ($query) {
 			return $query->where('type_user_id', 4);
 		})->orderBy('created_at', 'desc')->get();
